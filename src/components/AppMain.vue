@@ -27,7 +27,8 @@ export default {
                     <div class="col" v-for="movie in store.movies" :key="movie.id">
                         <!-- Movie -->
                         <AppCard :movieTitle="movie.title" :movieOriginalTitle="movie.original_title"
-                            :originalLanguage="movie.original_language" :vote="movie.vote_average" />
+                            :originalLanguage="movie.original_language" :vote="movie.vote_average"
+                            :moviePoster="movie.poster_path" />
                     </div>
                 </div>
                 <!-- End Row -->
@@ -42,7 +43,8 @@ export default {
                     <div class="col" v-for="series in store.series" :key="series.id">
                         <!-- Movie -->
                         <AppCard :movieTitle="series.name" :movieOriginalTitle="series.original_name"
-                            :originalLanguage="series.original_language" :vote="series.vote_average" />
+                            :originalLanguage="series.original_language" :vote="series.vote_average"
+                            :moviePoster="series.poster_path" />
                     </div>
                 </div>
                 <!-- End Row -->

@@ -21,7 +21,7 @@ export default {
             </div>
             <!-- Search bar -->
             <div class="search-bar">
-                <input class="py-2 me-2 rounded border-0" type="text" placeholder="Cerca film o serie tv"
+                <input class="me-2 rounded border-0" type="text" placeholder="Cerca film o serie tv"
                     v-model.trim="store.searchText" @keyup.enter="$emit('performSearch')">
                 <button class="btn" @click="$emit('performSearch')">Cerca</button>
             </div>
@@ -37,13 +37,16 @@ header {
     height: 80px;
     width: 100%;
     background-color: rgba($color: #000000, $alpha: 0.6);
-    // background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 40%);
     // background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
     position: fixed;
     z-index: 99;
 }
 
 .search-bar {
+    input {
+        padding: 7px 5px;
+    }
+
     button {
         background-color: $main-color;
         color: white;

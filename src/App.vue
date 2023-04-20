@@ -15,9 +15,10 @@ export default {
   },
   methods: {
     getMovies() {
-      const params = {
-        api_key: this.store.api_key,
-        query: this.store.searchText
+      const params = {};
+      if (this.store.searchText) {
+        params.api_key = this.store.api_key;
+        params.query = this.store.searchText;
       };
       axios.get(this.store.apiMoviesURL, {
         params
@@ -31,9 +32,10 @@ export default {
       })
     },
     getSeries() {
-      const params = {
-        api_key: this.store.api_key,
-        query: this.store.searchText
+      const params = {};
+      if (this.store.searchText) {
+        params.api_key = this.store.api_key;
+        params.query = this.store.searchText;
       };
       axios.get(this.store.apiSeriesURL, {
         params
