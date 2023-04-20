@@ -1,4 +1,5 @@
 <script>
+import '@fortawesome/fontawesome-free/css/all.css';
 export default {
     name: "AppCard",
     props: {
@@ -30,7 +31,11 @@ export default {
             <span v-else-if="originalLanguage === 'ja'"><img src="../img/japan.png" alt="Japanese"></span>
             <span v-else>{{ originalLanguage }}</span>
         </div>
-        <div class="vote">Vote: {{ vote }}</div>
+        <div class="vote">
+            Vote:
+            <span v-for="num in 5" :key="num"><i class="fa-solid fa-star"
+                    :class="{ 'yellow': num <= Math.ceil(vote / 2) }"></i></span>
+        </div>
     </div>
 </template>
 
@@ -46,5 +51,9 @@ export default {
             width: 20px;
         }
     }
+}
+
+.yellow {
+    color: gold;
 }
 </style>
