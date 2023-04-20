@@ -37,7 +37,10 @@ header {
     height: 80px;
     width: 100%;
     background-color: rgba($color: #000000, $alpha: 0.6);
+    // background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 40%);
+    // background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
     position: fixed;
+    z-index: 99;
 }
 
 .search-bar {

@@ -2,7 +2,10 @@
 export default {
     name: "AppCard",
     props: {
-        movie: Object
+        movieTitle: String,
+        movieOriginalTitle: String,
+        originalLanguage: String,
+        vote: Number,
     },
     data() {
         return {
@@ -16,10 +19,10 @@ export default {
     <!-- Card -->
     <div class="ms_card h-100">
         <!-- Movie infos -->
-        <div class="title">Title: {{ movie.title }}</div>
-        <div class="original-title">Original title: {{ movie.original_title }}</div>
-        <div class="language">Language: {{ movie.original_language }}</div>
-        <div class="vote">Vote: {{ movie.vote_average }}</div>
+        <div class="title">Title: {{ movieTitle }}</div>
+        <div class="original-title">Original title: {{ movieOriginalTitle }}</div>
+        <div class="language">Language: {{ originalLanguage }}</div>
+        <div class="vote">Vote: {{ vote }}</div>
     </div>
 </template>
 

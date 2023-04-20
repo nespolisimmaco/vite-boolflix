@@ -7,4 +7,5 @@ export const store = reactive({
   searchText: "",
   movies: [],
   series: [],
+  loaded: false,
 });
