@@ -35,9 +35,9 @@ export default {
 
 header {
     height: 80px;
+    width: 100%;
     background-color: rgba($color: #000000, $alpha: 0.6);
-    // debug
-    border-bottom: 1px solid white;
+    position: fixed;
 }
 
 .search-bar {
