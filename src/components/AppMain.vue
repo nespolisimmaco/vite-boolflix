@@ -28,7 +28,7 @@ export default {
                         <!-- Movie -->
                         <AppCard :movieTitle="movie.title" :movieOriginalTitle="movie.original_title"
                             :originalLanguage="movie.original_language" :vote="movie.vote_average"
-                            :moviePoster="movie.poster_path" />
+                            :moviePoster="movie.poster_path" :movieOverview="movie.overview" />
                     </div>
                 </div>
                 <!-- End Row -->
@@ -44,7 +44,7 @@ export default {
                         <!-- Movie -->
                         <AppCard :movieTitle="series.name" :movieOriginalTitle="series.original_name"
                             :originalLanguage="series.original_language" :vote="series.vote_average"
-                            :moviePoster="series.poster_path" />
+                            :moviePoster="series.poster_path" :movieOverview="series.overview" />
                     </div>
                 </div>
                 <!-- End Row -->

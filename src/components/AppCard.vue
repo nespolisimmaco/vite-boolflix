@@ -8,7 +8,8 @@ export default {
         movieOriginalTitle: String,
         originalLanguage: String,
         vote: Number,
-        moviePoster: String
+        moviePoster: String,
+        movieOverview: String
     },
     data() {
         return {
@@ -28,16 +29,18 @@ export default {
     <div class="ms_card h-100">
         <!-- Movie infos -->
         <!-- Movie cover -->
-        <div class="movie-cover">
-            <img v-if="moviePoster != null" :src="getImagePath(moviePoster)">
+        <div class="movie-cover h-100 ">
+            <img class="h-100" v-if="moviePoster != null" :src="getImagePath(moviePoster)">
             <h2 v-else>{{ movieTitle }}</h2>
         </div>
         <!-- Infos -->
-        <div class="movie-infos">
-            <div class="title">Title: {{ movieTitle }}</div>
-            <div class="original-title">Original title: {{ movieOriginalTitle }}</div>
+        <div class="movie-infos text-center ">
+            <h5 class="title"> {{ movieTitle }}</h5>
+            <div class="original-title">
+                <div>Titolo originale:</div>
+                {{ movieOriginalTitle }}
+            </div>
             <div class="language">
-                Language:
                 <span v-if="originalLanguage === 'en'"><img src="../img/united-kingdom.png" alt="English"></span>
                 <span v-else-if="originalLanguage === 'it'"><img src="../img/italy.png" alt="Italian"></span>
                 <span v-else-if="originalLanguage === 'es'"><img src="../img/spain.png" alt="Spanish"></span>
@@ -46,17 +49,25 @@ export default {
                 <span v-else>{{ originalLanguage }}</span>
             </div>
             <div class="vote">
-                Vote:
                 <span v-for="num in 5" :key="num"><i class="fa-solid fa-star"
                         :class="{ 'yellow': num <= Math.ceil(vote / 2) }"></i></span>
             </div>
+            <div class="overview">
+                Trama:
+                <p>{{ movieOverview }}</p>
+            </div>
         </div>
+        <!-- End Infos -->
     </div>
 </template>
 
 <style scoped lang="scss">
+@use "../style/partials/variables" as *;
+
 .ms_card {
     color: white;
+    position: relative;
+
 }
 
 .language {
@@ -64,6 +75,45 @@ export default {
         img {
             width: 20px;
         }
+    }
+}
+
+.movie-infos {
+    background-color: $card-infos;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    padding: 1rem 5px 10px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+
+        &-thumb {
+            background-color: $scrollbar-color;
+            border-radius: 20px;
+        }
+    }
+}
+
+.ms_card:hover {
+    .movie-infos {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.overview {
+
+    p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
     }
 }
 
