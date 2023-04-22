@@ -10,6 +10,7 @@ export const store = reactive({
   movies: [],
   series: [],
   actors: [],
+  genres: [],
   showmore: false,
   movieID: 0,
   loaded: false,
