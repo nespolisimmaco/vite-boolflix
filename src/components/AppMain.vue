@@ -6,6 +6,7 @@ export default {
     components: {
         AppCard
     },
+    emits: ["showMore"],
     data() {
         return {
             store
@@ -28,7 +29,8 @@ export default {
                         <!-- Movie -->
                         <AppCard :movieTitle="movie.title" :movieOriginalTitle="movie.original_title"
                             :originalLanguage="movie.original_language" :vote="movie.vote_average"
-                            :moviePoster="movie.poster_path" :movieOverview="movie.overview" />
+                            :moviePoster="movie.poster_path" :movieOverview="movie.overview" :movieID="movie.id"
+                            @showMore="$emit('showMore', movie.id, movie.title)" />
                     </div>
                 </div>
                 <!-- End Row -->
@@ -44,7 +46,8 @@ export default {
                         <!-- Movie -->
                         <AppCard :movieTitle="series.name" :movieOriginalTitle="series.original_name"
                             :originalLanguage="series.original_language" :vote="series.vote_average"
-                            :moviePoster="series.poster_path" :movieOverview="series.overview" />
+                            :moviePoster="series.poster_path" :movieOverview="series.overview" :movieID="series.id"
+                            @showMore="$emit('showMore', series.id, series.name)" />
                     </div>
                 </div>
                 <!-- End Row -->

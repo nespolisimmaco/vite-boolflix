@@ -9,8 +9,10 @@ export default {
         originalLanguage: String,
         vote: Number,
         moviePoster: String,
-        movieOverview: String
+        movieOverview: String,
+        movieID: Number
     },
+    emits: ["showMore"],
     data() {
         return {
             store
@@ -19,7 +21,7 @@ export default {
     methods: {
         getImagePath(image) {
             return (`https://image.tmdb.org/t/p/w342${image}`);
-        }
+        },
     }
 }
 </script>
@@ -55,6 +57,14 @@ export default {
             <div class="overview">
                 Trama:
                 <p>{{ movieOverview }}</p>
+            </div>
+            <!-- Show more -->
+            <button class="show-more my-1" @click="$emit('showMore', movieID, movieTitle)">Mostra di più</button>
+            <div v-show="store.showmore" class="actors">
+                <ul v-if="movieID === store.movieID" class="list-group">
+                    <h5>Cast</h5>
+                    <li v-for="actor in store.actors">{{ actor.name }}</li>
+                </ul>
             </div>
         </div>
         <!-- End Infos -->
@@ -119,5 +129,13 @@ export default {
 
 .yellow {
     color: gold;
+}
+
+.show-more {
+    background-color: $scrollbar-color;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: none;
 }
 </style>
