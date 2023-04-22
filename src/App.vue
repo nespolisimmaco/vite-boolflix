@@ -51,7 +51,7 @@ export default {
       })
     },
     // Show movies and series actors
-    showActors(movieID, movieName) {
+    showMoreInfos(movieID, movieName) {
       this.store.movieID = movieID;
       this.store.showmore = !this.store.showmore;
       const params = {
@@ -60,6 +60,7 @@ export default {
       // Ckeck if the chosen content is in movies array
       store.movies.forEach(movie => {
         if (movie.title === movieName) {
+          // Get actors array
           axios.get(`${this.store.movieCreditsURL}${movieID}/credits`, {
             params
           }).then((resp) => {
@@ -69,12 +70,24 @@ export default {
             this.store.actors = myData;
           }).catch(error => {
             console.log(error);
+          });
+          // Get genres array
+          axios.get(`${this.store.movieCreditsURL}${movieID}`, {
+            params
+          }).then((resp) => {
+            console.log(resp);
+            const myData = resp.data.genres;
+            console.log(myData);
+            this.store.genres = myData;
+          }).catch(error => {
+            console.log(error);
           })
         }
       });
       // Check if the chosen content is in series array
       store.series.forEach(series => {
         if (series.name === movieName) {
+          // Get actors array
           axios.get(`${this.store.seriesCreditsURL}${movieID}/credits`, {
             params
           }).then((resp) => {
@@ -82,6 +95,17 @@ export default {
             const myData = resp.data.cast.splice(0, 5);
             console.log(myData);
             this.store.actors = myData;
+          }).catch(error => {
+            console.log(error);
+          });
+          // Get genres array
+          axios.get(`${this.store.seriesCreditsURL}${movieID}`, {
+            params
+          }).then((resp) => {
+            console.log(resp);
+            const myData = resp.data.genres;
+            console.log(myData);
+            this.store.genres = myData;
           }).catch(error => {
             console.log(error);
           })
@@ -100,7 +124,7 @@ export default {
 
 <template>
   <AppHeader @performSearch="search" />
-  <AppMain @showMore="showActors" />
+  <AppMain @showMore="showMoreInfos" />
 </template>
 
 <style lang="scss">

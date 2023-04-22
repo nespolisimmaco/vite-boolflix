@@ -22,6 +22,13 @@ export default {
         getImagePath(image) {
             return (`https://image.tmdb.org/t/p/w342${image}`);
         },
+        showGenres(genres) {
+            let genresArray = [];
+            genres.forEach(genre => {
+                genresArray.push(genre.name);
+            });
+            return genresArray.join(', ');
+        }
     }
 }
 </script>
@@ -37,11 +44,14 @@ export default {
         </div>
         <!-- Infos -->
         <div class="movie-infos text-center ">
+            <!-- Title -->
             <h5 class="title"> {{ movieTitle }}</h5>
+            <!-- Otiginal title -->
             <div class="original-title">
                 <div>Titolo originale:</div>
                 {{ movieOriginalTitle }}
             </div>
+            <!-- Language -->
             <div class="language">
                 <span v-if="originalLanguage === 'en'"><img src="../img/united-kingdom.png" alt="English"></span>
                 <span v-else-if="originalLanguage === 'it'"><img src="../img/italy.png" alt="Italian"></span>
@@ -50,21 +60,29 @@ export default {
                 <span v-else-if="originalLanguage === 'ja'"><img src="../img/japan.png" alt="Japanese"></span>
                 <span v-else>{{ originalLanguage }}</span>
             </div>
+            <!-- Vote -->
             <div class="vote">
                 <span v-for="num in 5" :key="num"><i class="fa-solid fa-star"
                         :class="{ 'yellow': num <= Math.ceil(vote / 2) }"></i></span>
             </div>
+            <!-- Overview -->
             <div class="overview">
                 Trama:
                 <p>{{ movieOverview }}</p>
             </div>
-            <!-- Show more -->
+            <!-- *** Show more infos *** -->
             <button class="show-more my-1" @click="$emit('showMore', movieID, movieTitle)">Mostra di più</button>
+            <!-- Actors -->
             <div v-show="store.showmore" class="actors">
                 <ul v-if="movieID === store.movieID" class="list-group">
                     <h5>Cast</h5>
                     <li v-for="actor in store.actors">{{ actor.name }}</li>
                 </ul>
+            </div>
+            <!-- Genres -->
+            <div v-show="store.showmore" v-if="movieID === store.movieID" class="genres">
+                <h5>Generi</h5>
+                <div>"{{ showGenres(store.genres) }}"</div>
             </div>
         </div>
         <!-- End Infos -->
